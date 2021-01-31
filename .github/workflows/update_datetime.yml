@@ -27,3 +27,11 @@ jobs:
           YEAR: "${{ steps.current-time.outputs.year }}"
           DAY: "${{ steps.current-time.outputs.day }}"
         run: echo $TIME $R_TIME $F_TIME $YEAR $DAY
+
+      - name: Update README
+        uses: theboi/github-update-readme@v1.0
+        env:
+          F_TIME: ${{ steps.current-time.outputs.formattedTime }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          datetime: $F_TIME
